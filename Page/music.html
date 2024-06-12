@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>音乐可视化</title>
+</head>
+
+<body>
+    <div align="right">
+        <audio id="audioElement" src="Jaychou.mp3" controls></audio>
+    </div>
+    <svg id="wcSvg" width="500" height="250" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+    <script>
+        var audioElement = document.getElementById('audioElement');
+        var audioCtx;
+        var audioSrc;
+        var analyser;
+        // 添加自动播放功能
+        window.onload = function () {
+            audioElement.play();
+        };
+        audioElement.onplay = function () {
+            // 检查AudioContext是否已被创建
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                audioSrc = audioCtx.createMediaElementSource(audioElement);
+                analyser = audioCtx.createAnalyser();
+                audioSrc.connect(analyser);
+                audioSrc.connect(audioCtx.destination);
+            }
+
+            var frequencyData = new Uint8Array(50);
+            var myhist = document.getElementsByTagName("rect");
+
+            function everyViz() {
+                analyser.getByteFrequencyData(frequencyData);
+                for (var idx in myhist) {
+                    if (myhist[idx].getAttribute && frequencyData[idx]) {
+                        myhist[idx].setAttribute("y", 300 - frequencyData[idx]);
+                        myhist[idx].setAttribute("height", frequencyData[idx]);
+                    }
+                }
+            }
+            window.setInterval(everyViz, 20);
+        };
+
+        // 初始化SVG长方形
+        var svgWidth = window.innerWidth * 0.98;
+        document.getElementById('wcSvg').setAttribute("width", svgWidth);
+        for (var i = 0; i < 100; i++) {
+            var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            rect.setAttribute("x", i * svgWidth / 50);
+            rect.setAttribute("width", svgWidth * 0.9 / 50);
+            rect.setAttribute("y", 500);
+            rect.setAttribute("height", 0);
+            rect.style.fill = "rgba(0, 0, 255, 0.7)";
+            document.getElementById('wcSvg').appendChild(rect);
+        }
+    </script>
+
+</body>
+
+</html>

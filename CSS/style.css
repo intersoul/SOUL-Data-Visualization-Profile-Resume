@@ -1,0 +1,530 @@
+/*==================== 全局样式 全局样式=========*/
+/* 全局样式 */
+body,
+html {
+  height: 100%; /* 确保 body 和 html 元素占据整个视口高度 */
+}
+/* Header */
+.SOUL-header-container {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 60px;
+  background-color: rgb(255, 255, 255);
+  z-index: 999;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 添加外阴影 */
+}
+
+.SOUL-music {
+  position: absolute;
+  top: 10%;
+  left: 0;
+}
+
+.Ai-function {
+  position: fixed;
+  /* 设置fixed固定定位 */
+  bottom: 20px;
+  /* 距离浏览器窗口下边框20px */
+  right: 20px;
+  /* 距离浏览器窗口右边框20px */
+}
+
+.Ai-function a {
+  display: block;
+  /* 将<a>标签设为块元素，用于美化样式 */
+  text-decoration: none;
+  /* 取消超链接下画线 */
+  color: #333;
+  /* 设置文本颜色 */
+  background-color: #f2f2f2;
+  /* 设置背景颜色 */
+  border: 1px solid #ccc;
+  /* 设置边框样式 */
+  padding: 10px 20px;
+  /* 设置内边距 */
+  border-radius: 5px;
+  /* 设置圆角矩形 */
+  letter-spacing: 2px;
+  /* 设置文字间距 */
+}
+
+/* 新增的样式 */
+.Ai-function:hover {
+  background-color: #ddd; /* 悬停时背景颜色变化 */
+}
+
+.Ai-function iframe {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 500px;
+  border: none;
+}
+
+.Ai-function:hover iframe {
+  display: block;
+}
+
+/* 此处用于编写悬浮框的样式 */
+
+.SOUL-header-logo {
+  margin-left: 25%; /* 与容器左侧间距 40px */
+  a {
+    /* background-color: aqua; */
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.SOUL-header-menu {
+  /* margin-right: 15%; */
+  display: flex; /* 将内部元素设置为 Flex 布局 */
+  /* background-color: yellow; */
+}
+
+.SOUL-header-menu a {
+  display: inline-block; /* 将 <a> 元素设置为行内块级元素 */
+  margin-left: 20px; /* 设置 <a> 元素之间的间距 */
+  color: black;
+  text-decoration: none;
+}
+
+.SOUL-header-translation a {
+  color: black;
+  text-decoration: none;
+  /* margin-left: 50px; */
+  /* background-color: aqua; */
+}
+.music-svg {
+  width: 300px;
+  border-radius: 5%;
+}
+
+.main {
+  margin-top: 10%; /* 与Header的高度一致 */
+  margin-left: auto; /* 左右边距设置为自动，实现水平居中 */
+  margin-right: auto; /* 左右边距设置为自动，实现水平居中 */
+  max-width: 60%; /* 设置最大宽度，可以根据需要进行调整 */
+  /* background-color: aqua; */
+}
+/*==================== 音乐栏 =========*/
+/* 控制音频播放器容器的样式 */
+
+/*==================== 所有标题 =========*/
+.section-title {
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
+  /* background-color: aquamarine; */
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: gray;
+  text-align: center;
+}
+
+/*home*/
+.home {
+  /* background-color: bisque; */
+
+  width: 100%;
+  height: 500px; /* 让 .home 元素的高度占据页面高度的 50% */
+}
+
+/* 侧边栏 */
+.home-content-grid {
+  display: flex;
+  margin: 0 20px; /* 在左右两侧都留出20px的空间 */
+  /* background-color: aqua; */
+}
+
+.home-social {
+  width: 30px;
+  position: relative;
+
+  top: 150px;
+  /* 其他样式 */
+  img {
+    margin-top: 10px;
+    /* width: 100%; */
+    width: 30px;
+    height: auto;
+
+    /* 其他样式 */
+  }
+  /* background-color: aqua; */
+}
+
+.home__data {
+  /* margin-left: 20%; */
+  /* width: 100%; */
+  position: relative;
+  top: 150px;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  /* 下载简历 */
+  a {
+    position: relative;
+    /* top: 50px; */
+    /* left: 50%; */
+    color: white; /* 修改文字颜色为白色 */
+    text-decoration: none;
+    background-color: rgb(95, 236, 154); /* 设置背景颜色为蓝色 */
+    padding: 20px 40px; /* 添加内边距以增加按钮大小 */
+    border-radius: 20px; /* 添加圆角 */
+    display: inline-block; /* 使按钮变成块级元素 */
+
+    font-size: 24px;
+  }
+  /* 其他样式 */
+  /* background-color: aqua; */
+}
+
+.home__title {
+  font-size: 40px; /* 设置标题字体大小为 24 像素 */
+  /* width: 40%; */
+}
+
+.home__description {
+  font-size: 16px; /* 设置描述文本字体大小为 16 像素 */
+  color: gray; /* 设置描述文本颜色为灰色 */
+}
+
+.home__image img {
+  position: relative;
+
+  left: 50%;
+
+  width: 200px;
+  /* background-color: yellow; */
+  /* height: 40%; */
+}
+/*==================== 关于 =========*/
+.about {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: 500px; /* 让 .home 元素的高度占据页面高度的 50% */
+}
+
+.about-image img {
+  /* background-color: aquamarine; */
+  position: relative;
+  /* top: 30px; */
+  /* left: 5%; */
+  /* 其他样式 */
+  width: 300px; /* 设置图片的宽度为 200px */
+}
+
+.about-data {
+  /* background-color: blue; */
+  position: absolute; /* 将定位属性设置为绝对定位 */
+  top: 60%; /* 将顶部位置设置为父元素的 50% */
+  left: 60%; /* 将左侧位置设置为父元素的 50% */
+  transform: translate(
+    -30%,
+    -50%
+  ); /* 使用 transform 属性将元素的中心点移到其自身的中心 */
+  width: 50%;
+
+  font-size: 16px; /* 设置字体大小为 16 像素 */
+  color: gray; /* 设置字体颜色为灰色 */
+
+  a {
+    position: relative;
+    top: 10px;
+    /* left: 50%; */
+    color: white; /* 修改文字颜色为白色 */
+    text-decoration: none;
+    background-color: rgb(95, 236, 154); /* 设置背景颜色为蓝色 */
+    padding: 20px 40px; /* 添加内边距以增加按钮大小 */
+    border-radius: 20px; /* 添加圆角 */
+    display: inline-block; /* 使按钮变成块级元素 */
+
+    font-size: 24px;
+  }
+}
+
+.about-info {
+  display: flex; /* 使用 Flexbox 布局 */
+  justify-content: space-between; /* 将子元素水平排列，空白空间均匀分布 */
+
+  /* background-color: aquamarine; */
+}
+
+.about-info > div {
+  /* 如果您希望每个子元素有一样的宽度，可以使用 flex 属性 */
+  flex: 1; /* 子元素将平均占据可用空间 */
+}
+
+.about-info__title {
+  font-size: 24px; /* 设置字体大小为 24 像素 */
+  font-weight: bold; /* 加粗文本 */
+  text-align: center; /* 文本居中 */
+  color: black; /* 设置字体颜色为黑色 */
+}
+
+.about-info__subtitle {
+  font-size: 16px; /* 设置字体大小为 14 像素 */
+  color: gray; /* 设置字体颜色为灰色 */
+  display: block; /* 将行内元素转换为块级元素 */
+  text-align: center; /* 文本居中 */
+}
+/*==================== 作品 =========*/
+.wrapper {
+  width: 600px;
+  height: 350px;
+  border: 1px solid red;
+  position: relative;
+}
+
+/* 5张图片叠加到一块 */
+.wrapper img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.wrapper img:nth-of-type(1) {
+  display: block;
+}
+
+/* 小圆点 */
+.btn {
+  width: 150px;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  left: 225px;
+  bottom: 10px;
+  z-index: 100;
+}
+
+.btn span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+/* 左右箭头 */
+.wrapper a {
+  text-decoration: none;
+  font-size: 50px;
+  color: red;
+  position: absolute;
+  top: 35%;
+}
+
+.wrapper a:nth-of-type(1) {
+  left: 10px;
+}
+
+.wrapper a:nth-of-type(2) {
+  right: 10px;
+}
+
+.active {
+  background-color: red;
+}
+
+.portfolio {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: 100%; /* 让 .home 元素的高度占据页面高度的 50% */
+}
+
+/*直方图*/
+.chart-section {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: auto; /* 让 .home 元素的高度占据页面高度的 50% */
+  /* background-color: yellow; */
+}
+
+/*重庆地图*/
+.cqMap-section {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: auto; /* 让 .home 元素的高度占据页面高度的 50% */
+  /* background-color: yellow; */
+  border-radius: 10%;
+}
+
+.cqMap-section p {
+  font-size: 16px; /* 设置字体大小为 16 像素 */
+  color: gray; /* 设置字体颜色为灰色 */
+  /* background-color: blue; */
+}
+
+.Map-button {
+  position: absolute;
+  top: 40%;
+  left: 85%;
+  /* transform: translate(-50%, -50%); */
+  /* background-color: aqua; */
+
+  color: white; /* 修改文字颜色为白色 */
+  text-decoration: none;
+  background-color: rgb(95, 236, 154); /* 设置背景颜色为蓝色 */
+  padding: 10px 20px; /* 添加内边距以增加按钮大小 */
+  border-radius: 10px; /* 添加圆角 */
+  display: inline-block; /* 使按钮变成块级元素 */
+
+  font-size: 16px;
+}
+
+/*百度地图*/
+.BaiduMap-section {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: auto; /* 让 .home 元素的高度占据页面高度的 50% */
+  /* background-color: yellow; */
+}
+
+/*人物关系图*/
+.figure-section {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: auto; /* 让 .home 元素的高度占据页面高度的 50% */
+  /* background-color: yellow; */
+}
+
+/*直方图*/
+.chart-section {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: auto; /* 让 .home 元素的高度占据页面高度的 50% */
+  /* background-color: yellow; */
+}
+
+/*==================== 联系 =========*/
+
+.contact {
+  /* background-color: bisque; */
+  position: relative;
+  top: 100px;
+  width: 100%;
+  height: 100%; /* 让 .home 元素的高度占据页面高度的 50% */
+}
+
+.contact p {
+  font-size: 16px; /* 设置字体大小为 16 像素 */
+  color: gray; /* 设置字体颜色为灰色 */
+  /* background-color: blue; */
+  /* background-color: aquamarine; */
+}
+
+.contact-info {
+  display: flex;
+}
+
+.contact-icon {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  /* background-color: aqua; */
+}
+
+.contact-container h3 {
+  position: relative;
+  left: 35px;
+
+  font-size: 16px; /* 设置字体大小为 24 像素 */
+  /* background-color: aquamarine; */
+  /* text-align: center; */
+}
+
+.contact-container p {
+  position: relative;
+  top: 25px;
+  font-size: 12px; /* 设置字体大小为 16 像素 */
+  color: gray; /* 设置字体颜色为灰色 */
+  /* background-color: blueviolet; */
+  /* text-al
+  ign: center; */
+}
+/*========== 底部 =========*/
+.footer {
+  margin-top: 10%; /* 与Header的高度一致 */
+
+  /* background-color: #f5f5f5; */
+  background-color: rgb(95, 236, 154);
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.footer__data {
+  color: white;
+  text-decoration: none;
+  position: relative;
+
+  left: 200px;
+  /* background-color: aqua; */
+}
+.footer__links {
+  margin-right: 20%; /* 与容器右侧间距 40px */
+  display: flex; /* 将内部元素设置为 Flex 布局 */
+  /* background-color: yellow; */
+}
+
+.footer__links a {
+  display: inline-block; /* 将 <a> 元素设置为行内块级元素 */
+  color: white;
+  text-decoration: none;
+}
+
+.footer__socials {
+  position: absolute;
+  right: 100px;
+  /* background-color: aqua; */
+}
+
+.footer__socials img {
+  width: 30px;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.footer__copy {
+  font-size: 12px;
+  color: gray;
+  text-align: center;
+}

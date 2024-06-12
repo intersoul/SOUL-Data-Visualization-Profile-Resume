@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjustable Arrow</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /*清除内外边距  */
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            /* 设置ul的宽高 */
+            width: 500px;
+            height: 250px;
+            margin: 100px auto;
+            /* 去掉li前面的小圆点 */
+            list-style: none;
+            /* 让li横向排布 */
+            display: flex;
+        }
+
+        .picture-list {
+            border-radius: 5%;
+        }
+
+        li {
+            /* 设置li的宽度 */
+            width: 200px;
+            /* 过渡 */
+            transition: all 1s;
+            /* 可以在这里放入背景图或者颜色，这里用边框代替 */
+            border: 1px solid #000;
+            border-radius: 5%;
+        }
+
+        li:hover {
+            /* 鼠标移入效果 li宽度变大 flex-shrink为0 避免图片显示不完整 */
+            width: 400px;
+            flex-shrink: 0;
+        }
+
+        li img {
+            /* 图片宽度和高度 */
+            width: 100%;
+            height: 100%;
+            /* 图片居中 */
+            display: block;
+            margin: 0 auto;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="picture-list">
+        <li><img src="../Page/image/school/cqut1.jpg"></li>
+        <li><img src="../Page/image/school/cqut2.jpg"></li>
+        <li><img src="../Page/image/school/cqut3.jpg"></li>
+        <!-- <li><img src="../Page/image/school/cqut4.jpg"></li> -->
+        <li><img src="../Page/image/school/cqut5.jpg"></li>
+        <li><img src="../Page/image/school/cqut6.jpg"></li>
+    </ul>
+
+
+</body>
+
+</html>

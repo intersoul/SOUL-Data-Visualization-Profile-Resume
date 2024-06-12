@@ -1,0 +1,225 @@
+<html>
+
+<head>
+    <title>
+        我的人物关系
+    </title>
+    <style>
+        .body html {
+            background-color: #6dec6d;
+        }
+
+        .tooltip {
+            position: absolute;
+            width: 160px;
+            height: auto;
+            font-family: simsun;
+            font-size: 10px;
+            text-align: left;
+            color: black;
+            border-width: 1px solid black;
+            /* background-color: #7FFF00; */
+            border-radius: 3px;
+        }
+
+        /* .tooltip:after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 20%;
+            margin-left: -10px;
+            width: 10;
+            height: 10;
+            border-bottom: 12px solid black;
+            border-right: 12px solid yellowgreen;
+            border-left: 12px solid blue;
+            border-top: 12px solid red;
+        } */
+    </style>
+</head>
+
+<body style=" opacity:1">
+    <script src="/JS/d3.v7.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var width = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) * 0.98;
+        var height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight) * 0.9;
+        var img_h = 50;
+        var img_w = 50;
+        var radius = 10;
+        var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        var nodes = [
+            { name: "我自己", image: "image (9).png", intro: "0——我就是我自己。" },
+            { name: "邹佳佳", image: "image (1).png", intro: "1——邹佳佳，1998年10月28日 [4]出生于四川省，中国内地女歌手、演员，女子偶像团体SNH48五期生，SNH48 Team XII成员。" },
+            { name: "佳佳子", image: "image (2).png", intro: "2——2015年7月25日，成为SNH48五期生；12月4日，加入SNH48 Team XII；12月8日，以剧场公演的形式正式出道 [2]。" },
+            { name: "肖鹿", image: "image (3).png", intro: "3——在真人互动电影游戏《完蛋！我被美女包围了！》中饰演善良淳朴的女孩肖鹿" },
+            { name: "呆呆子", image: "image (4).png", intro: "4——是呆呆子呀。" },
+            { name: "周杰伦", image: "image (6).png", intro: "5——不用多说。" },
+            { name: "叶湘伦", image: "image (7).png", intro: "6——叶湘伦，不能说的秘密男主角。" },
+            { name: "藤原拓海", image: "image (8).png", intro: "7——头文字D男主角。" },
+            { name: "菜菜子", image: "image (5).png", intro: "8——这是菜菜子" }];
+
+        var edges = [
+            { source: 0, target: 1, relation: "是佳佳呀" },
+            { source: 0, target: 2, relation: "是佳佳呀" },
+            { source: 0, target: 3, relation: "是佳佳呀" },
+            { source: 0, target: 4, relation: "是佳佳呀" },
+            { source: 0, target: 5, relation: "歌迷" },
+            { source: 1, target: 2, relation: "佳佳" },
+            { source: 1, target: 3, relation: "佳佳" },
+            { source: 1, target: 4, relation: "佳佳" },
+            { source: 1, target: 5, relation: "佳佳" },
+            { source: 2, target: 3, relation: "佳佳" },
+            { source: 2, target: 4, relation: "佳佳" },
+            { source: 2, target: 8, relation: "佳佳" },
+            { source: 5, target: 6, relation: "扮演者" },
+            { source: 5, target: 7, relation: "扮演者" },
+        ];
+
+
+        var color = d3.schemeTableau10;
+        //提示框部分
+        var tooltip = d3.selectAll("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0.0);
+
+        var img_h = 50;
+        var img_w = 50;
+        var radius = 25;
+
+        var forceSimulation = d3.forceSimulation()
+            .force("link", d3.forceLink())
+            .force("charge", d3.forceManyBody().strength(-1000))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        //绘制
+        forceSimulation.nodes(nodes)
+            .on("tick");
+        //生成边数据
+        forceSimulation.force("link")
+            .links(edges)
+            .distance(100);
+
+        console.log(nodes);
+        console.log(edges);
+
+        for (var i = 0; i < nodes.length; i++) {
+            var sum = 0;
+            for (var j = 0; j < edges.length; j++) {
+                if ((edges[j].source.index == i) || (edges[j].source.index == i))
+                    sum = sum + 1;
+            }
+            nodes[i].weight = sum;
+        }
+
+        var lines = svg.selectAll(".forceLine")
+            .data(edges)
+            .enter()
+            .append("line")
+            .attr("class", "forceLine")
+            .style("stroke", "gray")
+            .style("opacity", 0.4)
+            .style("stroke-width", 1);
+
+        var edges_text = svg.selectAll(".linetext")
+            .data(edges)
+            .enter()
+            .append("text")
+            .attr("class", "linetext")
+            .text(d => d.relation)
+            .style("stroke", color[4])
+            .style("font-size", 8);
+
+        var circles = svg.selectAll("forceCircle")
+            .data(nodes)
+            .enter()
+            .append("circle")
+            .attr("class", "forceCircle")
+            .attr("r", radius)
+            .style("stroke", "DarkGray")
+            .style("stroke-width", "0.5")
+            .attr("fill", function (d, i) {
+                //创建圆形图片
+                var defs = svg.append("defs").attr("id", "imgdefs");
+                var catpattern = defs.append("pattern")
+                    .attr("id", "catpattern" + i)
+                    .attr("height", 1)
+                    .attr("width", 1);
+                catpattern.append("image")
+                    .attr("x", - (img_w / 2 - radius + 5.8))
+                    .attr("y", - (img_h / 2 - radius + 3.5))
+                    .attr("width", img_w + 11)
+                    .attr("height", img_h + 6)
+                    .attr("xlink:href", "image/" + d.image);
+                return "url(#catpattern" + i + ")";
+            })
+            .on("mouseover", function (d, i) {    //加入提示框
+                console.log(d);
+                tooltip
+                    // .html("角色简介：" + d.srcElement.__data__.intro)
+                    .html(d.srcElement.__data__.intro)
+                    .style("left", d.x + 45 + "px")
+                    .style("top", d.y + 45 + "px")
+                    .style("opacity", 0.7);
+            })
+            .call(drag());
+
+        var texts = svg.selectAll(".forceText")
+            .data(nodes)
+            .enter()
+            .append("text")
+            .attr("class", "forceText")
+            .attr("x", function (d) { return d.x; })
+            .attr("y", function (d) { return d.y; })
+            .style("stroke", color[2])
+            .style("stroke-family", "仿宋")
+            .style("font-size", "10px")
+            .attr("dx", "-1.5em")
+            .attr("dy", "3em")
+            .text(function (d) { return d.name; });
+
+        forceSimulation.on("tick", function () {
+            lines.attr("x1", function (d) { return d.source.x; });
+            lines.attr("y1", function (d) { return d.source.y; });
+            lines.attr("x2", function (d) { return d.target.x; });
+            lines.attr("y2", function (d) { return d.target.y; });
+            circles.attr("cx", function (d) { return d.x; });
+            circles.attr("cy", function (d) { return d.y; });
+            texts.attr("x", function (d) { return d.x; });
+            texts.attr("y", function (d) { return d.y; });
+            edges_text.attr("x", d => (d.source.x + d.target.x) / 2);
+            edges_text.attr("y", d => (d.source.y + d.target.y) / 2);
+        });
+
+        function drag() {
+
+            function dragstarted(event, d) {
+                if (!event.active) forceSimulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+
+            function dragended(event, d) {
+                if (!event.active) forceSimulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+
+            return d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended);
+        }
+    </script>
+
+</body>
+
+</html>

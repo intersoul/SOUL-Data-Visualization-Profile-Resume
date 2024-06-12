@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .wrapper {
+            width: 600px;
+            height: 350px;
+            /* border: 1px solid rgb(95, 236, 154); */
+            position: relative;
+            /* background-color: rgb(95, 236, 154); */
+            border-radius: 5%;
+        }
+
+        /* 5张图片叠加到一块 */
+        .wrapper img {
+            width: 60%;
+            height: 70%;
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            display: none;
+            border-radius: 5%;
+        }
+
+        .wrapper img:nth-of-type(1) {
+            display: block;
+        }
+
+        /* 小圆点 */
+        .btn {
+            width: 150px;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            left: 225px;
+            bottom: 10px;
+            z-index: 100
+        }
+
+        .btn span {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border: 2px solid rgb(95, 236, 154);
+            ;
+            border-radius: 50%;
+        }
+
+        /* 左右箭头 */
+        .wrapper a {
+            text-decoration: none;
+            font-size: 50px;
+            color: rgb(95, 236, 154);
+            position: absolute;
+            top: 35%;
+        }
+
+        .wrapper a:nth-of-type(1) {
+            left: 10px;
+
+        }
+
+        .wrapper a:nth-of-type(2) {
+            right: 10px;
+        }
+
+        .active {
+            background-color: rgb(95, 236, 154);
+        }
+
+        /* 为描述文本添加样式并定位 */
+
+
+
+        .slide h1 {
+            position: absolute;
+            bottom: 0;
+            /* top: 0; */
+            /* 调整到顶部 */
+            /* left: 10%; */
+            /* right: 10%; */
+            text-align: center;
+            color: black;
+            width: 80%;
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            padding: 10px 0;
+            border-radius: 5%;
+        }
+
+        .slide p {
+            position: absolute;
+            /* bottom: 0; */
+            top: 10%;
+            /* 保持在底部，根据您的描述似乎应保持在底部，如需调整请告知 */
+            right: 45px;
+            /* 定位到右侧 */
+            width: 100px;
+            /* 设置固定宽度 */
+            text-align: left;
+            /* 文字左对齐，因为是在右侧 */
+            color: gray;
+            /* background-color: rgba(0, 0, 0, 0.5); */
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="contain">
+            <div class="slide">
+                <img src="../img/opus1.svg" alt="">
+                <h1>电容及电感的测量（高精度电桥）</h1>
+                <div class="description-box">
+                    <p>使用msp432p401r芯片，通过ADC采集多级放大电路和运算电路后的输出电压，并通过微处理器进行数据处理，提高精度。</p>
+
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="../Page/image/work3.png" alt="">
+                <h1>佳佳子的主页</h1>
+                <div class="description-box">
+                    <p>纯前端搭建的佳佳子的主页，使用HTML、CSS、JavaScript、jQuery、Bootstrap等技术</p>
+
+                </div>
+
+            </div>
+            <div class="slide">
+                <img src="../img/jiajia3.jpg" alt="">
+                <h1>MC-我的世界风格任务栏</h1>
+                <div class="description-box">
+                    <p>VS2022 C# winform开发的MC我的世界风格任务栏</p>
+                </div>
+
+
+            </div>
+            <div class="slide">
+                <img src="../Page/image/work1.jpg" alt="">
+                <h1>低功耗全球定位器</h1>
+                <div class="description-box">
+                    <p>使用stm32作为主控，通过GPS低功耗4G模块，使用阿里云服务器进行数据传输，使用自己开发的微信小程序和网页端进行数据展示，实现低功耗全球定位。</p>
+                </div>
+
+            </div>
+            <div class="slide">
+                <img src="../Page/image/work2.jpg" alt="">
+                <h1>多功能VU段对讲机</h1>
+                <div class="description-box">
+                    <p>通过VU段模块进行语音对讲，通过低功耗4G模块连接到网络，使用自己开发的微信小程序和实现多功能VU段对讲机。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="btn">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <a href="javascript:void(0);">&lt;</a>
+        <a href="javascript:void(0);">&gt;</a>
+    </div>
+    <script src="../JS/jquery.min.js"></script>
+    <script>
+        // 修改选择器以匹配新的结构
+        var $slides = $(".contain .slide"); // 获取所有滑动项的集合
+        var index = 0;
+        // 点击上一张
+        $("a:first").click(function () {
+            prev_pic();
+        })
+        // 点击下一张
+        $("a:last").click(function () {
+            next_pic();
+        })
+        // 悬浮停止
+        $(".wrapper").mouseover(function () {
+            clearInterval(id);
+        });
+        $(".wrapper").mouseout(function () {
+            autoplay();
+        })
+
+
+        // 下一张
+        function next_pic() {
+            index++;
+            if (index > 4) {
+                index = 0;
+            }
+            addStyle();
+        }
+
+        // 上一张
+        function prev_pic() {
+            index--;
+            if (index < 0) {
+                index = 4;
+            }
+            addStyle();
+        }
+
+        // 控制图片显示隐藏,小圆点背景色
+        // function addStyle() {
+        //     $("img").eq(index).fadeIn();
+        //     $("img").eq(index).siblings().fadeOut();
+        //     $("span").eq(index).addClass("active");
+        //     $("span").eq(index).siblings().removeClass("active");
+        // }
+        // 控制图片显示隐藏,小圆点背景色，同时处理描述
+        function addStyle() {
+            $slides.eq(index).fadeIn().siblings().fadeOut(); // 同时控制图片和描述的显示与隐藏
+            $("span").eq(index).addClass("active").siblings().removeClass("active");
+        }
+        // 自动轮播
+        var id;
+        autoplay();
+        function autoplay() {
+            id = setInterval(function () {
+                next_pic();
+            }, 3000)
+        }
+
+    </script>
+</body>
+
+</html>
